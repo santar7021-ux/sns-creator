@@ -465,28 +465,27 @@ input[type=radio]{accent-color:var(--ac);}
 /* ══ HELP CHARACTER FLOAT BUTTON ══ */
 #help-char-btn {
   position: fixed;
-  bottom: 12px;
-  left: 0;
-  width: 60px; /* 레일 너비와 동일 */
+  bottom: 20px;
+  left: 80px; /* 레일(60px) + 여백 */
   z-index: 8000;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 5px;
   cursor: pointer;
   user-select: none;
 }
 #help-char-bubble {
   background: linear-gradient(135deg,#667eea,#a855f7);
   color: #fff;
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 800;
-  padding: 3px 6px;
-  border-radius: 10px;
+  padding: 6px 12px;
+  border-radius: 14px;
   white-space: nowrap;
-  box-shadow: 0 3px 10px rgba(102,126,234,.5);
+  box-shadow: 0 4px 14px rgba(102,126,234,.5);
   animation: bubblePop .6s ease infinite alternate;
-  letter-spacing: .2px;
+  letter-spacing: .3px;
   text-align: center;
   line-height: 1.4;
 }
@@ -526,7 +525,7 @@ input[type=radio]{accent-color:var(--ac);}
 /* ══ HELP CHAT POPUP ══ */
 #help-chat-popup {
   position: fixed;
-  bottom: 80px; left: 68px; /* 레일 바로 오른쪽 */
+  bottom: 90px; left: 74px;
   width: 320px;
   max-height: 480px;
   background: var(--s1);
