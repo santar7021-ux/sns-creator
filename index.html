@@ -462,6 +462,144 @@ input[type=radio]{accent-color:var(--ac);}
   background:transparent !important;
 }
 
+/* ══ HELP CHARACTER FLOAT BUTTON ══ */
+#help-char-btn {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 8000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+#help-char-bubble {
+  background: linear-gradient(135deg,#667eea,#a855f7);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 5px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(102,126,234,.5);
+  animation: bubblePop .6s ease infinite alternate;
+  letter-spacing: .3px;
+}
+#help-char-face {
+  font-size: 38px;
+  line-height: 1;
+  animation: charWiggle 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.3));
+  transition: transform .15s;
+}
+#help-char-btn:hover #help-char-face { transform: scale(1.15); }
+@keyframes charWiggle {
+  0%   { transform: rotate(-12deg) translateY(0px); }
+  25%  { transform: rotate(12deg)  translateY(-4px); }
+  50%  { transform: rotate(-8deg)  translateY(0px); }
+  75%  { transform: rotate(8deg)   translateY(-3px); }
+  100% { transform: rotate(-12deg) translateY(0px); }
+}
+@keyframes bubblePop {
+  0%   { transform: scale(1)    translateY(0); }
+  100% { transform: scale(1.05) translateY(-3px); }
+}
+
+/* ══ HELP CHAT POPUP ══ */
+#help-chat-popup {
+  position: fixed;
+  bottom: 100px; right: 20px;
+  width: 320px;
+  max-height: 480px;
+  background: var(--s1);
+  border: 1px solid var(--bd);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  z-index: 8500;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: popupSlideUp .22s ease;
+}
+#help-chat-popup.open { display: flex; }
+@keyframes popupSlideUp {
+  from { opacity:0; transform: translateY(20px) scale(.96); }
+  to   { opacity:1; transform: translateY(0)    scale(1); }
+}
+.hcp-header {
+  background: linear-gradient(135deg,#667eea,#a855f7);
+  padding: 12px 14px;
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
+}
+.hcp-header-avatar { font-size: 24px; line-height: 1; }
+.hcp-header-text { flex: 1; }
+.hcp-header-text div:first-child { font-size: 13px; font-weight: 800; color: #fff; }
+.hcp-header-text div:last-child  { font-size: 10px; color: rgba(255,255,255,.75); margin-top: 1px; }
+.hcp-close { width: 28px; height: 28px; border-radius: 8px; background: rgba(255,255,255,.2); border: none; color: #fff; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.hcp-close:hover { background: rgba(255,255,255,.35); }
+.hcp-messages {
+  flex: 1; overflow-y: auto;
+  padding: 12px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.hcp-messages::-webkit-scrollbar { width: 3px; }
+.hcp-messages::-webkit-scrollbar-thumb { background: var(--bd); border-radius: 2px; }
+.hcp-msg-user {
+  display: flex; justify-content: flex-end;
+}
+.hcp-msg-user span {
+  background: var(--ac); color: #fff;
+  padding: 7px 11px; border-radius: 12px 12px 2px 12px;
+  font-size: 11px; max-width: 85%; line-height: 1.5;
+}
+.hcp-msg-bot {
+  display: flex; gap: 7px; align-items: flex-start;
+}
+.hcp-msg-bot .avatar { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.hcp-msg-bot .bubble {
+  background: var(--s2); border: 1px solid var(--bd);
+  padding: 8px 11px; border-radius: 2px 12px 12px 12px;
+  font-size: 11px; line-height: 1.6; color: var(--tx);
+  white-space: pre-line; max-width: 85%;
+}
+.hcp-quick-tags {
+  padding: 0 12px 8px;
+  display: flex; flex-wrap: wrap; gap: 5px;
+  flex-shrink: 0;
+}
+.hcp-tag {
+  padding: 4px 9px; border-radius: 20px;
+  border: 1px solid var(--bd); background: var(--s2);
+  color: var(--tx2); font-size: 10px;
+  cursor: pointer; font-family: inherit;
+  transition: all .13s;
+}
+.hcp-tag:hover { border-color: var(--ac); background: var(--ac2); color: var(--ac); }
+.hcp-input-row {
+  padding: 10px 12px;
+  border-top: 1px solid var(--bd);
+  display: flex; gap: 6px; align-items: flex-end;
+  flex-shrink: 0;
+}
+.hcp-input-row textarea {
+  flex: 1; background: var(--s2);
+  border: 1px solid var(--bd); border-radius: 8px;
+  color: var(--tx); font-size: 11px;
+  padding: 7px 9px; resize: none; outline: none;
+  font-family: inherit; line-height: 1.5;
+  box-sizing: border-box;
+}
+.hcp-input-row textarea:focus { border-color: var(--ac); }
+.hcp-send {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--ac); border: none; color: #fff;
+  font-size: 15px; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.hcp-send:hover { filter: brightness(1.15); }
+
 /* ══ HELP MODAL ══ */
 #help-modal{position:fixed;inset:0;background:rgba(10,12,20,.72);backdrop-filter:blur(6px);z-index:9000;display:none;align-items:center;justify-content:center;padding:20px;}
 #help-modal.open{display:flex;}
@@ -3658,7 +3796,6 @@ function showSpecsNew(fromMySz){
 }
 function closeSpecs(){document.getElementById('specs-modal').classList.remove('open');}
 function showHelp(){
-  // 채팅형 도움말 LP 열기
   openLP('help', document.getElementById('rb-help'));
 }
 function closeHelp(){
@@ -3666,9 +3803,57 @@ function closeHelp(){
   if(m) m.classList.remove('open');
 }
 function showHelpModal(){
-  // 기존 전체보기 팝업
   var m=document.getElementById('help-modal');
   if(m) m.classList.add('open');
+}
+
+// ── 캐릭터 팝업 ──────────────────────────────────────
+var _hcpOpen = false;
+function toggleHelpPopup(){
+  _hcpOpen = !_hcpOpen;
+  var popup = document.getElementById('help-chat-popup');
+  var btn   = document.getElementById('help-char-btn');
+  if(popup) popup.classList.toggle('open', _hcpOpen);
+  if(btn)   btn.style.transform = _hcpOpen ? 'scale(0.9)' : '';
+  if(_hcpOpen){
+    setTimeout(function(){
+      var inp = document.getElementById('hcp-input');
+      if(inp) inp.focus();
+    }, 250);
+  }
+}
+function hcpSend(){
+  var inp = document.getElementById('hcp-input');
+  var q = inp ? inp.value.trim() : '';
+  if(!q) return;
+  inp.value = '';
+  hcpAsk(q);
+}
+function hcpAsk(q){
+  var msgs = document.getElementById('hcp-messages');
+  if(!msgs) return;
+  // 사용자 메시지
+  var uDiv = document.createElement('div');
+  uDiv.className = 'hcp-msg-user';
+  uDiv.innerHTML = '<span>'+q+'</span>';
+  msgs.appendChild(uDiv);
+  msgs.scrollTop = msgs.scrollHeight;
+  // 타이핑 인디케이터
+  var typingDiv = document.createElement('div');
+  typingDiv.className = 'hcp-msg-bot';
+  typingDiv.innerHTML = '<div class="avatar">🦊</div><div class="bubble" style="color:var(--tx3)">입력 중...</div>';
+  msgs.appendChild(typingDiv);
+  msgs.scrollTop = msgs.scrollHeight;
+  // 검색 후 응답
+  setTimeout(function(){
+    typingDiv.remove();
+    var ans = helpSearch(q);
+    var bDiv = document.createElement('div');
+    bDiv.className = 'hcp-msg-bot';
+    bDiv.innerHTML = '<div class="avatar">🦊</div><div class="bubble">'+ans.replace(/\n/g,'<br>')+'</div>';
+    msgs.appendChild(bDiv);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 500);
 }
 
 function smTab(tab){
@@ -8235,6 +8420,43 @@ function initCanvas(){
 
 <!-- 모바일 우측 패널 토글 -->
 <button class="mobile-rp-toggle" onclick="document.querySelector('.rp').classList.toggle('open')">⚙</button>
+
+
+<!-- ══ HELP CHARACTER FLOAT BUTTON ══ -->
+<div id="help-char-btn" onclick="toggleHelpPopup()" title="무엇이든 물어보세요!">
+  <div id="help-char-bubble">무엇이든 물어보세요! 💬</div>
+  <div id="help-char-face">🦊</div>
+</div>
+
+<!-- ══ HELP CHAT POPUP ══ -->
+<div id="help-chat-popup">
+  <div class="hcp-header">
+    <div class="hcp-header-avatar">🦊</div>
+    <div class="hcp-header-text">
+      <div>도움말 도우미</div>
+      <div>궁금한 기능을 물어보세요!</div>
+    </div>
+    <button class="hcp-close" onclick="toggleHelpPopup()">✕</button>
+  </div>
+  <div class="hcp-messages" id="hcp-messages">
+    <div class="hcp-msg-bot">
+      <div class="avatar">🦊</div>
+      <div class="bubble">안녕하세요! 👋<br>SNS 콘텐츠 생성기 도우미입니다.<br>궁금한 기능을 편하게 물어보세요!</div>
+    </div>
+  </div>
+  <div class="hcp-quick-tags">
+    <button class="hcp-tag" onclick="hcpAsk('단축키 알려줘')">⌨️ 단축키</button>
+    <button class="hcp-tag" onclick="hcpAsk('텍스트 편집')">T 텍스트</button>
+    <button class="hcp-tag" onclick="hcpAsk('이미지 추가')">🖼 이미지</button>
+    <button class="hcp-tag" onclick="hcpAsk('도형 추가')">◻ 도형</button>
+    <button class="hcp-tag" onclick="hcpAsk('저장 방법')">💾 저장</button>
+    <button class="hcp-tag" onclick="hcpAsk('PNG 내보내기')">📤 내보내기</button>
+  </div>
+  <div class="hcp-input-row">
+    <textarea id="hcp-input" rows="2" placeholder="예: 텍스트 색상 바꾸는 방법?" onkeydown="if(event.key==String.fromCharCode(13)&&!event.shiftKey){event.preventDefault();hcpSend();}"></textarea>
+    <button class="hcp-send" onclick="hcpSend()">↑</button>
+  </div>
+</div>
 
 </body>
 </html>
